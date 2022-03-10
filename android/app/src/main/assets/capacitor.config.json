@@ -1,0 +1,6 @@
+{
+	"appId": "com.hacker.wordle",
+	"appName": "wordle",
+	"webDir": "public",
+	"bundledWebRuntime": false
+}
