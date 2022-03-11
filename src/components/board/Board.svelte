@@ -2,7 +2,7 @@
 	import { getRowData, words } from "../../utils";
 
 	import Row from "./Row.svelte";
-	import ContextMenu from "../widgets/ContextMenu.svelte";
+	import { ContextMenu } from "../widgets";
 	import { createEventDispatcher } from "svelte";
 	import { scale } from "svelte/transition";
 

@@ -180,7 +180,7 @@ export function newSeed(mode: GameMode) {
 }
 
 export const modeData: ModeData = {
-	default: GameMode.daily,
+	default: GameMode.infinite,
 	modes: [
 		{
 			name: "Daily",
@@ -229,15 +229,6 @@ export function seededRandomInt(min: number, max: number, seed: number) {
 }
 
 export const DELAY_INCREMENT = 200;
-
-export const PRAISE = [
-	"Genius",
-	"Magnificent",
-	"Impressive",
-	"Splendid",
-	"Great",
-	"Phew",
-];
 
 export function createNewGame(mode: GameMode): GameState {
 	return {

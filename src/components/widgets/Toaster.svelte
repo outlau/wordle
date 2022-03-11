@@ -10,7 +10,12 @@
 
 <div class="toast">
 	{#each toast as slice}
-		<div class="slice" out:fade={{ duration: 200 }}>{slice}</div>
+		<div
+			class="slice"
+			class:failed={slice === "⛔ UNAUTHORIZED ⛔"}
+			class:hacked={slice === "✔ H4CK3D ✔"}
+			out:fade={{ duration: 200 }}
+		>{slice}</div>
 	{/each}
 </div>
 
@@ -30,5 +35,11 @@
 		margin: 16px auto;
 		border-radius: 4px;
 		width: fit-content;
+	}
+	.failed {
+		background: var(--red);
+	}
+	.hacked {
+		background: var(--color-correct);
 	}
 </style>
