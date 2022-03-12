@@ -1,13 +1,12 @@
 const words = {
 	"words": [
-		"cigar",
-		"rebut",
-		"sissy",
-		"humph",
-		"awake",
-		"blush",
+		"tests",
+		"sandy",
+		"candy",
+		"mandy",
+		"handy",
 	],
-	"wordsold": [
+	"valid": [
 		"cigar",
 		"rebut",
 		"sissy",
@@ -2322,9 +2321,7 @@ const words = {
 		"rower",
 		"artsy",
 		"rural",
-		"shave"
-	],
-	"valid": [
+		"shave",
 		"aahed",
 		"aalii",
 		"aargh",

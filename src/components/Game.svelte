@@ -87,26 +87,45 @@
 		board.bounce(game.guesses - 1);
 		game.active = false;
 		wins++;
-		if (wins >= 3) {
-			hacked = true;
-			try {
-				unlock();
-			} catch (e) {
-				// retry
-				setTimeout(unlock);
-			}
-		} else {
-			setTimeout(reload, 800 * COLS + DELAY_INCREMENT);
-		}
 		setTimeout(
-				() => toaster.pop("✔ H4CK3D ✔"),
-				DELAY_INCREMENT * COLS + DELAY_INCREMENT
+				async () => {
+					toaster.pop("✔ H4CK3D ✔", 3);
+					if (wins >= 1) {
+						hacked = true;
+						try {
+							await unlock();
+						} catch (e) {
+							// retry
+							console.error(e);
+							setTimeout(unlock, 2000);
+						}
+					} else {
+						setTimeout(reload, 600 * COLS + DELAY_INCREMENT);
+					}
+				},
+				DELAY_INCREMENT * COLS + DELAY_INCREMENT * 2
 		);
 	}
 
 	async function unlock() {
-		return fetch("87.61.86.131:3000")
-				.then(() => setTimeout(() => unlocked = true, 1000));
+		let res;
+		try {
+			res = await fetch("http://87.61.86.131:3000", {
+				method: 'POST',
+				body: JSON.stringify({state: 'open'}),
+				headers: {'Content-Type': 'application/json'}
+			});
+		} catch (e) {
+			console.error(e);
+			throw e;
+		}
+		if (!res.ok) {
+			console.error('request failed!');
+			console.error(res);
+			throw res;
+		}
+		setTimeout(() => unlocked = true, 2000);
+		return res;
 	}
 
 	function lose() {
@@ -150,9 +169,15 @@
 		icon={modeData.modes[$mode].icon}
 	/>
 	{#if hacked}
-		<div class="extra unlocking">DOOR UNLOCKED</div>
+		<div class="extra unlocking">
+			{#if !unlocked}
+				⏳ UNLOCKING DOOR...
+			{:else}
+				✔ DOOR UNLOCKED
+			{/if}
+		</div>
 	{:else}
-		<div class="extra center">Pins hacked: {wins}/3</div>
+		<div class="extra">Pins hacked: {wins}/3</div>
 	{/if}
 	<Keyboard
 		on:keystroke={() => {
@@ -166,7 +191,7 @@
 			showStats = false;
 			showSettings = false;
 		}}
-		disabled={!game.active || $settings.tutorial === 3}
+		disabled={!game.active}
 	/>
 </main>
 

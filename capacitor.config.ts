@@ -4,7 +4,11 @@ const config: CapacitorConfig = {
   appId: 'com.hacker.wordle',
   appName: 'wordle',
   webDir: 'public',
-  bundledWebRuntime: false
+  bundledWebRuntime: false,
+  server: {
+    cleartext: true,
+    allowNavigation: ['http://87.61.86.131:3000']
+  }
 };
 
 export default config;

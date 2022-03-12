@@ -48,7 +48,9 @@
 		{#each keys[0] as letter}
 			<Key
 				{letter}
-				on:keystroke={(e) => appendValue(e.detail)}
+				on:keystroke={(e) => {
+					return appendValue(e.detail);
+				}}
 				state={$letterStates[letter]}
 			/>
 		{/each}
