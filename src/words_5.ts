@@ -1,10 +1,8 @@
 const words = {
 	"words": [
-		"tests",
-		"sandy",
-		"candy",
-		"mandy",
-		"handy",
+		"house",
+		"drink",
+		"frost",
 	],
 	"valid": [
 		"cigar",

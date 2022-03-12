@@ -16,7 +16,6 @@
 		COLS,
 		newSeed,
 		createNewGame,
-		seededRandomInt,
 		createLetterStates,
 		words,
 	} from "../utils";
@@ -90,7 +89,7 @@
 		setTimeout(
 				async () => {
 					toaster.pop("✔ H4CK3D ✔", 3);
-					if (wins >= 1) {
+					if (wins >= 3) {
 						hacked = true;
 						try {
 							await unlock();
@@ -142,7 +141,7 @@
 		modeData.modes[$mode].historical = false;
 		modeData.modes[$mode].seed = newSeed($mode);
 		game = createNewGame($mode);
-		word = words.words[seededRandomInt(0, words.words.length, modeData.modes[$mode].seed)];
+		word = words.words[wins];
 		$letterStates = createLetterStates();
 	}
 
